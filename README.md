@@ -53,7 +53,8 @@ index=* sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
 
 ### Evidence
 
-![PowerShell Investigation](powershell_detection.png)
+![PowerShell Investigation](screenshots/powershell_detection.png)
+
 ---
 
 ## Investigation Steps
@@ -69,7 +70,7 @@ index=* sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
 
 Evidence collected:
 
-![PowerShell Investigation](screenshots/powershell_investigation.png)
+![PowerShell Investigation](screenshots/powershell_detection.png)
 
 ---
 
@@ -135,25 +136,25 @@ Evidence collected:
 
 ## Incident Timeline
 
-| Time | Activity                            | Evidence                      |
-| ---- | ----------------------------------- | ----------------------------- |
-| T1   | PowerShell execution detected       | Sysmon process event          |
-| T2   | Command shell activity reviewed     | Sysmon process event          |
-| T3   | Account discovery activity reviewed | whoami / net command activity |
-| T4   | Network connections reviewed        | Sysmon Event ID 3             |
-| T5   | File creation activity reviewed     | Sysmon Event ID 11            |
+| Time | Activity                            | Evidence                |
+| ---- | ----------------------------------- | ----------------------- |
+| T1   | PowerShell execution detected       | Sysmon Process Creation |
+| T2   | Command shell activity reviewed     | Sysmon Process Creation |
+| T3   | Account discovery activity reviewed | whoami / net commands   |
+| T4   | Network connections reviewed        | Sysmon Event ID 3       |
+| T5   | File creation activity reviewed     | Sysmon Event ID 11      |
 
 ---
 
 ## Findings
 
 * PowerShell execution was detected on the monitored endpoint.
-* Command shell activity was also reviewed for related activity.
-* Account discovery commands were investigated.
+* Command shell activity was reviewed for related activity.
+* Account discovery commands were observed and investigated.
 * Network connection events were reviewed for possible external communication.
-* File creation events were reviewed for possible payload staging.
-* No confirmed malicious payload was identified in this lab scenario.
-* The activity was treated as suspicious and investigated using a standard SOC triage workflow.
+* File creation activity was reviewed for signs of payload staging.
+* No confirmed malicious payload was identified during this investigation.
+* The activity was treated as suspicious and investigated according to SOC triage procedures.
 
 ---
 
@@ -161,25 +162,25 @@ Evidence collected:
 
 * Validate whether PowerShell activity was expected or authorized.
 * Review the user account associated with the activity.
-* Check parent process and command-line details.
-* Review related network connections.
-* Review file creation events around the same time.
-* If suspicious activity is confirmed:
+* Examine parent process and command-line arguments.
+* Review related network communications.
+* Investigate file creation events around the same timeframe.
+* If malicious activity is confirmed:
 
   * Isolate the endpoint
-  * Disable or reset the affected user account
+  * Disable or reset the affected account
   * Collect forensic evidence
-  * Escalate to incident response
-  * Create or tune detections to improve coverage
+  * Escalate to the Incident Response team
+  * Create or tune detections to improve visibility
 
 ---
 
 ## Lessons Learned
 
-* Sysmon provides valuable endpoint telemetry for incident response.
-* Splunk enables fast investigation across process, network, and file events.
-* PowerShell activity should be reviewed in context with parent process, user account, command line, network, and file activity.
-* A structured investigation workflow helps SOC analysts triage alerts consistently.
+* Sysmon provides valuable endpoint telemetry for incident investigations.
+* Splunk enables efficient analysis of process, network, and file events.
+* PowerShell activity should always be reviewed in context with parent processes, user accounts, command-line arguments, network activity, and file operations.
+* A structured investigation workflow improves consistency and response quality.
 
 ---
 
@@ -191,7 +192,7 @@ Evidence collected:
 * Sysmon Analysis
 * Windows Event Analysis
 * MITRE ATT&CK Mapping
-* Timeline Creation
+* Timeline Analysis
 * Evidence Collection
 * Detection Engineering
 * Security Monitoring
@@ -205,4 +206,3 @@ Evidence collected:
 Cybersecurity Analyst | SOC Analyst | Threat Hunter
 
 GitHub: https://github.com/ag48665
-
