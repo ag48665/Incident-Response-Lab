@@ -53,8 +53,7 @@ index=* sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
 
 ### Evidence
 
-![PowerShell Detection](screenshots/powershell_detection.png)
-
+![PowerShell Investigation](powershell_detection.png)
 ---
 
 ## Investigation Steps
